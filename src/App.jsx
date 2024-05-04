@@ -5,6 +5,8 @@ import "./App.css";
 import Homepage from "./Components/Homepage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MeteoPage from "./Components/MeteoPage";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (

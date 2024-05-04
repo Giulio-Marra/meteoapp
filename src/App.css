@@ -1,10 +1,11 @@
 .navStyle{
-  background-color: #a3d4f7;
+  background-color: #292525;
   color: white;
-  border-bottom: 0px solid rgba(255, 255, 255, 0.466);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.466);
 }
 body {
-  background: linear-gradient(to bottom, #60a2d7, #a3d4f7);
+  /* background: linear-gradient(to bottom, #000000, #4b4747); */
+  background-color: #292525;
   /* background-image: url(../src/img/OLBKWF0.jpg); */
   color: #ffffff;
   min-height: 100vh;
@@ -18,7 +19,7 @@ body {
 .formInputNav{
   background-color: #60a2d7;
   border-radius: 20px;
-  width: 500px;
+ 
   border: none;
   opacity: 0.8;
 }
