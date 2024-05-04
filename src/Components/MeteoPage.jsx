@@ -47,13 +47,13 @@ const MeteoPage = () => {
     if (weather) {
       switch (weather.weather[0].main) {
         case "Clear":
-          return "src=https://images.unsplash.com/photo-1620385019253-b051a26048ce?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+          return "https://images.unsplash.com/photo-1548266652-99cf27701ced?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
         case "Clouds":
-          return "src=https://images.unsplash.com/photo-1620385019253-b051a26048ce?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+          return "https://images.unsplash.com/photo-1548266652-99cf27701ced?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
         case "Rain":
-          return "#4682b4";
+          return "https://images.unsplash.com/photo-1620385019253-b051a26048ce?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
         default:
-          return "#ffffff";
+          return "https://images.unsplash.com/photo-1620385019253-b051a26048ce?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
       }
     } else {
       return "#ffffff";
@@ -62,8 +62,12 @@ const MeteoPage = () => {
 
   return (
     <Container
-      className="text-center pt-5 m-0 p-2"
-      style={{ backgroundImage: getBackgroundColor(weather), maxWidth: "100%" }}
+      className="text-center pt-5 m-0 p-3 containerCard"
+      style={{
+        backgroundImage: `url(${getBackgroundColor(weather)})`,
+        maxWidth: "100%",
+        backdropFilter: "blur(10px)",
+      }}
     >
       {weather ? (
         <>

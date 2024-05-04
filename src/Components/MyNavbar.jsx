@@ -44,13 +44,12 @@ const MyNavbar = () => {
     <>
       <Navbar className="navStyle" expand="lg">
         <Container fluid>
-          <Navbar.Brand>
-            <Link to="/">
-              <img src={logo} alt="Logo" style={{ height: "40px" }} />
-            </Link>
-          </Navbar.Brand>
-
-          <Nav className="mx-auto">
+          <Nav>
+            <NavLink as={Link} to="/" className="nav-link text-white">
+              Home
+            </NavLink>
+          </Nav>
+          <Nav className="">
             <Form className="d-flex" onSubmit={sandSubmit}>
               <FormControl
                 type="search"
@@ -60,14 +59,9 @@ const MyNavbar = () => {
                 onChange={sandInputChange}
               />
               <Button type="submit" className="btnSearch">
-                <i className="bi bi-search"></i>
+                <i className="bi bi-search text-black"></i>
               </Button>
             </Form>
-          </Nav>
-          <Nav>
-            <NavLink as={Link} to="/" className="nav-link text-white">
-              Home
-            </NavLink>
           </Nav>
         </Container>
       </Navbar>
