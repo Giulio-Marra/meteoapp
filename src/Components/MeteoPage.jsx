@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
 // api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
@@ -13,7 +13,7 @@ const MeteoPage = () => {
     const fetchWeather = async () => {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=76cfda9e30f39e2af936fca60ce65c9f`
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=it&appid=76cfda9e30f39e2af936fca60ce65c9f`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch");
@@ -28,11 +28,12 @@ const MeteoPage = () => {
     const fetchDaysWeather = async () => {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=76cfda9e30f39e2af936fca60ce65c9f`
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=it&appid=76cfda9e30f39e2af936fca60ce65c9f`
         );
         if (!response.ok) {
           throw new Error("failed to fetch days");
         }
+
         const data = await response.json();
         setDayweather(data);
         console.log(data);
@@ -58,8 +59,6 @@ const MeteoPage = () => {
         default:
           return "https://images.unsplash.com/photo-1620385019253-b051a26048ce?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
       }
-    } else {
-      return "#ffffff";
     }
   };
   const settings = {
@@ -96,13 +95,13 @@ const MeteoPage = () => {
   const getDayOfTheWeek = (dateStr) => {
     const date = new Date(dateStr);
     const days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
+      "Domenica",
+      "Lunedi",
+      "Martedi",
+      "Mercoledi",
+      "Giovedi",
+      "Venerdi",
+      "Sabato",
     ];
     return days[date.getDay()];
   };
@@ -142,20 +141,22 @@ const MeteoPage = () => {
             </Row>
             <Row className="justify-content-center mt-3">
               <Col xs="auto">
-                <p>Wind: {weather.wind.speed} m/s</p>
+                <p>Vento: {weather.wind.speed} m/s</p>
               </Col>
               <Col xs="auto">
-                <p>Humidity: {weather.main.humidity}%</p>
+                <p>Umidità: {weather.main.humidity}%</p>
               </Col>
             </Row>
             <Row className="justify-content-center">
               <Col>
-                <p>Visibility: {weather.visibility} meters</p>
+                <p>Visibilità: {weather.visibility} metri</p>
               </Col>
             </Row>
           </>
         ) : (
-          <p>Loading weather data...</p>
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
         )}
       </Container>
       <Container>
@@ -180,14 +181,16 @@ const MeteoPage = () => {
 
                 <p>{item.weather[0].description}</p>
                 <p>
-                  Temp: {Math.round(item.main.temp)}°C, Wind: {item.wind.speed}{" "}
+                  Temp: {Math.round(item.main.temp)}°C, Vento: {item.wind.speed}{" "}
                   m/s
                 </p>
               </div>
             ))}
           </Slider>
         ) : (
-          <p>Loading forecast data...</p>
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
         )}
       </Container>
     </>

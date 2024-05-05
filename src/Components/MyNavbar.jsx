@@ -9,7 +9,6 @@ import {
   NavLink,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../img/bolt_3722414.png";
 
 const MyNavbar = () => {
   const [city, setCity] = useState("");
@@ -23,7 +22,7 @@ const MyNavbar = () => {
     event.preventDefault();
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=76cfda9e30f39e2af936fca60ce65c9f`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&lang=it&appid=76cfda9e30f39e2af936fca60ce65c9f`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch city.");
@@ -53,7 +52,7 @@ const MyNavbar = () => {
             <Form className="d-flex" onSubmit={sandSubmit}>
               <FormControl
                 type="search"
-                placeholder="Search"
+                placeholder="Cerca luogo"
                 className="me-2 formInputNav rounder-5"
                 value={city}
                 onChange={sandInputChange}

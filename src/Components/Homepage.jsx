@@ -1,24 +1,51 @@
-import React from "react";
-import imageBackground from "../img/cloudy_1163657.png";
+import React, { useState } from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import { Container } from "react-bootstrap";
 
-const Homepage = () => {
+const WeatherMap = () => {
+  const [layer, setLayer] = useState("clouds");
+  const [zoom, setZoom] = useState(5);
+  const [position, setPosition] = useState([51.505, -0.09]);
+
+  const sandLayerChange = (event) => {
+    setLayer(event.target.value);
+  };
+
   return (
-    <div className="text-center homePage mt-5 p-3">
+    <Container className="text-center homePage mt-5 p-5">
       <h1>Benvenuti nella nostra App Meteo!</h1>
-      <p>Scopri le previsioni meteo accurate e aggiornate per la tua città.</p>
-      <div className="weather-intro">
-        <img
-          src={imageBackground}
-          alt="Clima soleggiato"
-          className="img-fluid"
-        />
-        <p>
-          Consulta il meteo in tempo reale o scopri le previsioni a lungo
-          termine con facilità.
-        </p>
+      <p>Usa la barra di ricerca,</p>
+      <p>
+        per scoprire le previsioni meteo accurate e aggiornate per la tua città.
+      </p>
+
+      <div>
+        <label htmlFor="layer-select"></label>
+        <select id="layer-select" value={layer} onChange={sandLayerChange}>
+          <option value="clouds_new">Nuvole</option>
+          <option value="precipitation_new">Precipitazioni</option>
+          <option value="pressure_new">Pressione</option>
+          <option value="wind_new">Vento</option>
+          <option value="temp_new">Temperatura</option>
+        </select>
       </div>
-    </div>
+      <div className="text-center">
+        <MapContainer
+          center={position}
+          zoom={zoom}
+          className="mapContainer text-center"
+        >
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+          <TileLayer
+            url={`https://tile.openweathermap.org/map/${layer}/{z}/{x}/{y}.png?appid=76cfda9e30f39e2af936fca60ce65c9f`}
+            opacity={1}
+          />
+        </MapContainer>
+      </div>
+    </Container>
   );
 };
 
-export default Homepage;
+export default WeatherMap;

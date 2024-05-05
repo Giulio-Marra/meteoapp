@@ -44,3 +44,11 @@ body {
 .containerCard{
   backdrop-filter: blur(20px);
 }
+.mapContainer{
+  max-width: 800px;
+  height: 500px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+ 
+}
