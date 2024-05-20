@@ -5,8 +5,8 @@ import { Container } from "react-bootstrap";
 
 const WeatherMap = () => {
   const [layer, setLayer] = useState("clouds_new");
-  const [zoom, setZoom] = useState(5);
-  const [position, setPosition] = useState([51.505, -0.09]);
+  const [zoom] = useState(5);
+  const [position] = useState([51.505, -0.09]);
 
   const handleLayerChange = (event) => {
     setLayer(event.target.value);
