@@ -4,11 +4,11 @@ import "leaflet/dist/leaflet.css";
 import { Container } from "react-bootstrap";
 
 const WeatherMap = () => {
-  const [layer, setLayer] = useState("clouds");
+  const [layer, setLayer] = useState("clouds_new");
   const [zoom, setZoom] = useState(5);
   const [position, setPosition] = useState([51.505, -0.09]);
 
-  const sandLayerChange = (event) => {
+  const handleLayerChange = (event) => {
     setLayer(event.target.value);
   };
 
@@ -21,8 +21,8 @@ const WeatherMap = () => {
       </p>
 
       <div>
-        <label htmlFor="layer-select"></label>
-        <select id="layer-select" value={layer} onChange={sandLayerChange}>
+        <label htmlFor="layer-select">Scegli il livello:</label>
+        <select id="layer-select" value={layer} onChange={handleLayerChange}>
           <option value="clouds_new">Nuvole</option>
           <option value="precipitation_new">Precipitazioni</option>
           <option value="pressure_new">Pressione</option>

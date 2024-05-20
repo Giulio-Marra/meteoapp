@@ -43,7 +43,7 @@ const MeteoPage = () => {
     };
     fetchWeather();
     fetchDaysWeather();
-  }, [dynamicId]);
+  }, [dynamicId, lat, lon]);
 
   const getBackgroundColor = (weather) => {
     if (weather) {
